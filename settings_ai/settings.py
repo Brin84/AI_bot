@@ -18,10 +18,10 @@ async def ask(prompt: str):
     return completion.choices[0].message.content
 
 
-async def main_test():
-    response = await ask("Как дела, мой друг?")
-    print(response)
-
-
-if __name__ == "__main__":
-    asyncio.run(main_test())
+# async def main_test():
+#     response = await ask("Как дела, мой друг?")
+#     print(response)
+#
+#
+# if __name__ == "__main__":
+#     asyncio.run(main_test())
