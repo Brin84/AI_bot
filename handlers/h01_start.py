@@ -1,7 +1,7 @@
 from aiogram.filters import CommandStart
 from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, FSInputFile, ReplyKeyboardRemove
+from aiogram.types import Message, FSInputFile, ReplyKeyboardRemove, CallbackQuery
 
 from keyboards.inline import get_learning_menu
 from settings_ai.settings import ask
@@ -30,6 +30,18 @@ async def open_learning_menu(message: Message):
         "Выбери, что хочешь изучать 👇",
         reply_markup=get_learning_menu()
     )
+
+
+@router.callback_query(F.data == "learn daily")
+async def learn_daily_routine_words(callback: CallbackQuery):
+    await callback.message.answer(daily_routine_words, parse_mode="Markdown")
+    await callback.answer()
+
+
+@router.callback_query(F.data == "learn verbs")
+async def learn_verbs(callback: CallbackQuery):
+    await callback.message.answer(irregular_verbs, parse_mode="Markdown")
+    await callback.answer()
 
 
 @router.message(Creator.wait)
